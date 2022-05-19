@@ -15,11 +15,11 @@ export default {
         })
     },
     setArticles(state){
-        this.$axios.$get(`${state.state.url}${state.state.initialCount}`)
+        this.$axios.$get(`${state.state.url}${state.state.initialCount}&title_contains=${state.state.titleSearch}&_sort=${state.state.sort}`)
         .then((res)=>{
             state.commit('setArticles',res)
-            if(res.count<=0){
-                state.commit('setErrorMsg','Não existem artigos')
+            if(Object.keys(res).length<=0){  
+                state.commit('setErrorMsg','Não existem artigos correspondentes a pesquisa.')
             }
         })
         .catch((err)=>{
@@ -33,6 +33,7 @@ export default {
             
         })
     },
+    
     setArticle(state,id){
         this.$axios.$get(`${state.state.urlUniqueArticle}${id}`)
         .then((res)=>{

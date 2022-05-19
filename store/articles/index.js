@@ -5,7 +5,12 @@ export const state = () => ({
     totalArticles:'',
     initialCount:10,
     articles:'',
+    sortLabel:'Ordenar por',
+    titleSearch:'',
     sort:'',
     errorMsg:false,
-    article:''
+    article:'',
+    showLoadMoreButton:false,
+    showLoadWarning:true,
+
 })

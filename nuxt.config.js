@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'challenge-space-flight-news',
+    title: 'Space Flight News',
     htmlAttrs: {
       lang: 'en'
     },
@@ -22,7 +22,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/material-icons.js'
+    '~/plugins/material-icons.js',
+    // { src: '~/plugins/window.client.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
