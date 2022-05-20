@@ -33,7 +33,7 @@ export default {
             state.sortLabel = 'Titulo'
         }else{
             if(id=="publishedAt"){
-                state.sortLabel = 'Mais novas'
+                state.sortLabel = 'Mais antigas'
             }else{
                 state.sortLabel = id
             }

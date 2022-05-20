@@ -39,8 +39,8 @@
                     {
                         key:1,
                         field:'publishedAt',
-                        data:'Mais novas',
-                        text:'Mais novas'
+                        data:'Mais antigas',
+                        text:'Mais antigas'
                     },
                     {
                         key:2,
