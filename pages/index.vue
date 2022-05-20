@@ -36,12 +36,6 @@ export default {
   },
   data() {
     return {
-      loading:true,
-      articles: null,
-      totalArticles: null,
-      initialCount:10,
-      showLoadMoreButton:false,
-      initialURL:``,
       showModal:false
     }
   },
@@ -58,16 +52,21 @@ export default {
     },
     openCloseModal(){
       this.showModal = !this.showModal
+      if(this.showModal==true){
+        document.body.style.overflow = 'hidden'
+      }else{
+        document.body.style.overflow = 'auto'
+      }
     },
      callArticle(ev){
       this.openCloseModal()
-       this.$store.commit('articles/resetArticle')
+      this.$store.commit('articles/setErrorMsgModal','')
+      this.$store.commit('articles/resetArticle')
       this.$store.dispatch('articles/setArticle',ev.target.dataset.id)
     }
   },
   mounted(){
-    this.$store.dispatch('articles/setTotalArticles')
-    this.$store.dispatch('articles/setArticles')
+    
 
     window.addEventListener('keyup',(ev)=>{
       switch(ev.key){
@@ -76,6 +75,21 @@ export default {
           break
       }
     })
+    
+    const urlId = new URLSearchParams(location.search)
+    if(urlId.get('text')!=null){
+      this.$store.commit('articles/setTitleSearch',urlId.get('text'))
+    }
+    if(urlId.get('order')){
+      this.$store.commit('articles/setSort',urlId.get('order'))
+      this.$store.commit('articles/setSortLabel',urlId.get('order'))
+    }
+    if(urlId.get('id')!=null){
+      this.$store.commit('articles/resetArticle')
+      this.$store.dispatch('articles/setArticle',urlId.get('id'))
+      this.openCloseModal()
+    }
+    this.$store.dispatch('articles/setArticles')
     
   }
 }

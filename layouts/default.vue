@@ -1,7 +1,7 @@
 <template>
     <main role="main">
         <header>
-            <div :class="`w-screen fixed top-0 left-0 z-10 backdrop-blur-md bg-white ${distance > 65 ? 'shadow-lg':''}`">
+            <div :class="`w-screen fixed top-0 left-0 z-10 backdrop-blur-md bg-white transition-all ${distance > 65 ? 'shadow-lg':''}`">
                 
                <div class="flex items-center justify-end mx-auto py-2 max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
                     <div class="relative mr-4">
@@ -70,6 +70,7 @@ export default {
             this.showOrderOpts = !this.showOrderOpts
         },
         setSearch(){
+            this.$store.commit('articles/resetInicialCount')
             this.$store.commit('articles/setTitleSearch',this.search)
             this.$store.commit('articles/setShowLoadMoreButton',false)
             this.$store.commit('articles/setShowLoadWarning',true)
@@ -79,6 +80,7 @@ export default {
       
         changeOrderValue(ev){
             this.showOrderOpts = false
+            this.$store.commit('articles/resetInicialCount')
             this.$store.commit('articles/setShowLoadMoreButton',false)
             this.$store.commit('articles/setShowLoadWarning',true)
             this.$store.commit('articles/setSortLabel',ev.target.dataset.value)
@@ -104,6 +106,10 @@ export default {
         window.addEventListener('scroll',()=>{
             this.distance = window.pageYOffset
         },true)
+        const urlId = new URLSearchParams(location.search).get('text')
+        if(urlId!=null){
+            this.search = urlId
+        }
     }
 }
 </script>
@@ -120,6 +126,9 @@ export default {
     font-family:'Roboto Condensed', sans-serif;
     @apply text-grayblack;
 }
+/* html{
+    @apply bg-grayblack;
+} */
 .select-option{
     @apply py-1.5 pl-2 pr-3 border-solid border-blueblack  border-2 border-t border-b w-full;
 }

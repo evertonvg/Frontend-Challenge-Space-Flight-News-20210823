@@ -12,8 +12,10 @@ export default {
     },
     setArticles(state,value){
         state.articles = value
-        if(state.initialCount <= state.totalArticles){
+        if(state.initialCount < state.totalArticles){
             state.showLoadMoreButton = true
+        }else{
+            state.showLoadMoreButton = false
         }
         state.showLoadWarning = false
     },
@@ -23,8 +25,19 @@ export default {
     resetArticles(state){
         state.articles = ''
     },
+    resetInicialCount(state){
+        state.initialCount = 10
+    },
     setSortLabel(state,id){
-        state.sortLabel = id
+        if(id=='title'){
+            state.sortLabel = 'Titulo'
+        }else{
+            if(id="publishedAt"){
+                state.sortLabel = 'Mais novas'
+            }else{
+                state.sortLabel = id
+            }
+        }
     },
     setCount(state){
   
@@ -39,6 +52,9 @@ export default {
     },
     setErrorMsg(state,value){
         state.errorMsg = value
+    },
+    setErrorMsgModal(state,value){
+        state.errorMsgModal = value
     },
     setShowLoadMoreButton(state,value){
         state.showLoadMoreButton = value

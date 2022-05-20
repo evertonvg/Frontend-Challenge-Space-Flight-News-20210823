@@ -4,7 +4,8 @@ module.exports = {
             'grayblack': '#1E2022',
             'blueblack':'#302E53',
             'orangeblack':'#D07017',
-            'white':'#FFFFFF'
+            'white':'#FFFFFF',
+            'iceblack':'#DBF1FD'
         },
     },
   }

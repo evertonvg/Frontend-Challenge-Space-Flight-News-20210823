@@ -1,16 +1,24 @@
 <template>
     <div class="card-container mb-12" :data-id="item.id">
         <div class="image">
-            <picture>
-            <source :srcset="item.imageUrl" media="(min-width: 600px)">
-            <img :src="item.imageUrl" :key="item.title" loading="lazy" onerror="https://thumbs.dreamstime.com/b/espa%C3%A7o-rocket-32237994.jpg" class="h-full ">
-            </picture>
+          <img :src="item.imageUrl" :key="item.title" loading="lazy" @error="replaceByDefault" class="h-full" >
         </div>
         <div class="content" >
             <h2 class="title">{{item.title}}</h2>
-            <div class="date">{{$dateFns.format(new Date(item.publishedAt),'dd/MM/yyyy')}}</div>
-            <p>
-                {{item.summary.substring(0, 150) }}{{ item.summary.toString().length>150 ? '...': ''}}
+            <div class="date">
+              <span>
+                {{$dateFns.format(new Date(item.publishedAt),'dd/MM/yyyy')}}
+              </span>
+              
+              <div class="border border-solid border-blueblack py px-2" v-show="showButton">
+                {{item.newsSite}}
+              </div>
+            </div>
+            <p v-if="showButton == true">  
+              {{item.summary.substring(0, 150) }}{{ item.summary.toString().length>150 ? '...': ''}}
+            </p>
+            <p v-else>  
+              {{item.summary}}
             </p>
             <defaultButton id="showmodal" valueButton="Ver mais" class="mt-4" :dataId="item.id" :event="callArticle" v-show="showButton"></defaultButton>
         </div>
@@ -21,7 +29,12 @@ import defaultButton from '../components/button.vue'
 export default {
     name:'card-container',
     props:['item','callArticle','showButton'],
-    components:{defaultButton}
+    components:{defaultButton},
+    methods:{
+      replaceByDefault(e){
+        e.target.src = 'https://thumbs.dreamstime.com/b/espa%C3%A7o-rocket-32237994.jpg'
+      }
+    }
 }
 </script>
 <style lang="postcss">
@@ -50,7 +63,7 @@ export default {
     @apply font-bold text-2xl mt-2 md:mt-0;
   }
   .card-container .content .date{
-    @apply text-xs my-1;
+    @apply text-xs my-1 flex items-center justify-between w-full;
   }
   @media(min-width: 768px){
     .card-container:nth-child(odd){
