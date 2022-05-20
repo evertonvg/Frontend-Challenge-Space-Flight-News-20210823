@@ -54,6 +54,8 @@ export default {
       this.showModal = !this.showModal
       if(this.showModal==true){
         document.body.style.overflow = 'hidden'
+        
+
       }else{
         document.body.style.overflow = 'auto'
       }
@@ -66,12 +68,11 @@ export default {
     }
   },
   mounted(){
-    
-
     window.addEventListener('keyup',(ev)=>{
       switch(ev.key){
           case 'Escape':
               this.showModal = false
+              document.body.style.overflow = 'auto'
           break
       }
     })

@@ -7,5 +7,8 @@ module.exports = {
             'white':'#FFFFFF',
             'iceblack':'#DBF1FD'
         },
+        fontFamily:{
+            'Condensed':['Roboto Condensed','sans-serif']
+        }
     },
   }

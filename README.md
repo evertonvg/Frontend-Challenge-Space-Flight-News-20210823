@@ -1,4 +1,25 @@
-# challenge-space-flight-news
+# titulo: challenge space flight news
+# challenge by coodesh
+# Esse é um projeto que traz uma listagem de artigos da Api pública spaceflightnewsapi com a possibilidade de fazer filtro por nome do artigo e data de publicação.
+
+# descrição das tecnologias usadas
+
+# nuxt.js: um framework para vue.js que ja vem com alguns pacotes já pré-instalados, o que me facilitou na configuração inicial do projeto.
+# tailwindcss: framework para css que usa classes de utilidades.
+# axios: ferramenta para consumir apis, ja inclusa dentro do nuxt.
+# vue material design icons: um pacote com componentes vue.js de icones feitos em svg do próprio material design.
+# nuxt date fns: um modulo nuxt.js para formatação de dias e horas.
+
+# Como rodar o projeto:
+# foi utilizado a versão v14.15.0 do node.js.
+# deve criar um arquivo chamado ".env" na raiz do projeto com o seguinte conteúdo: API_URL=https://api.spaceflightnewsapi.net/v3
+# executar "npm install" no terminal para instalar os pacotes.
+# após isso, dentro de package.json (localizado na raiz do projeto), existe uma lista de scripts que podem ser utilizados no terminal para executar o projeto, dependendo do resultado que se deseja obter. O comando mais comum para rodar o projeto é "npm run dev", que irá executar um server localmente em desenvolvimento.
+
+# abaixo dessa linha tem somente o read.me padrão do nuxt.js, caso se tenha mais duvidas sobre o projeto.
+
+
+
 
 ## Build Setup
 
